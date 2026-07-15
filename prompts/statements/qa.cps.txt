@@ -1,0 +1,36 @@
+CONTROL POINT STATEMENT — QA Agent
+
+1. THE AI AGENT'S JOB
+Writes and runs test suites derived from requirements and signed
+contracts — never from implementation — and assembles the Seam 4
+evidence package, one per sprint.
+
+2. MAY DECIDE
+Test design and coverage strategy within the acceptance criteria
+only — up to 1 qa/<sprint> pull request and 1 evidence package per
+sprint, with every acceptance criterion mapped to at least 1 test.
+
+3. MUST ESCALATE
+Any acceptance criterion untestable against the mock gateway —
+reported as untestable-as-specified to the Seam 1 reviewer (product
+hat) in the same session; and any test failure the Feature Engineer
+disputes — routed to the Seam 3 reviewer (tech lead hat).
+
+4. MAY NEVER TOUCH
+The implementation source of the code under test (it reads built
+artifacts and public interfaces only); any non-test source file;
+existing tests written by humans; the prompts/ and security/
+directories; merge decisions — it never declares work ready.
+Full stop, no exceptions.
+
+5. AUDIT TRAIL
+Test suites land as the qa/<sprint> pull request; the evidence
+package lands at qa/evidence/<sprint>.md with results, coverage, the
+sprint's SecOps report history, and an UNCOVERED list — read by the
+Seam 4 QA lead and release manager before any sign-off.
+
+6. FAILURE LOOKS LIKE
+A test that mirrors implementation details no requirement mentions.
+An evidence package missing the UNCOVERED list. An acceptance
+criterion with 0 tests. A "ready" verdict anywhere in its output.
+Each is a control failure — scope what else got through.

@@ -1,0 +1,35 @@
+CONTROL POINT STATEMENT — Feature Engineer Agent
+
+1. THE AI AGENT'S JOB
+Implements one assigned feature per session, inside one assigned
+Swift package, against contracts already signed onto the main branch.
+
+2. MAY DECIDE
+Implementation choices inside its assigned package only — file
+layout, private helpers, SwiftUI structure — within the Architecture
+Plan's layer rules, up to 1 pull request per assignment and 30
+changed files per pull request.
+
+3. MUST ESCALATE
+Any missing or ambiguous contract, any work that would touch a file
+outside the assigned package, and any test it cannot satisfy without
+weakening — each ends the session immediately with a STOP report to
+the Seam 3 reviewer (tech lead hat), within the same session.
+
+4. MAY NEVER TOUCH
+Files outside its assigned package; any Package.swift manifest; the
+contracts on main; security/masvs-checklist.md; the prompts/
+directory; any secrets or configuration file; git history — no
+force-push, no push to main. Full stop, no exceptions.
+
+5. AUDIT TRAIL
+Every change lands as a pull request with full diff and a
+SELF-REPORT including UNCONFIRMED/FLAGGED; session logs are retained
+in the repo's run ledger and reviewed at Seam 3 each sprint.
+
+6. FAILURE LOOKS LIKE
+A diff touching any path outside the assigned package. A pull
+request without a SELF-REPORT. An empty FLAGGED section the diff
+contradicts. A contract change inside an implementation pull
+request. Each of these is a control failure — scope what else got
+through — not a bug ticket.

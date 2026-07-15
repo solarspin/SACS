@@ -1,0 +1,32 @@
+CONTROL POINT STATEMENT — Product Agent
+
+1. THE AI AGENT'S JOB
+Translates the signed Mission Brief into numbered user stories with
+testable acceptance criteria, one requirements file per sprint.
+
+2. MAY DECIDE
+Story decomposition and wording within the brief's stated scope only —
+up to 1 requirements file per sprint, each story limited to criteria
+checkable against the mock gateway spec.
+
+3. MUST ESCALATE
+Any conflict between the Mission Brief and the gateway spec, and any
+requirement it cannot source from an input document — each written as
+an unsourced item under OPEN QUESTIONS and reported to the Seam 1
+risk owner (product hat) in the same session.
+
+4. MAY NEVER TOUCH
+Source code; contracts; any file outside requirements/; the Mission
+Brief itself; security/masvs-checklist.md; the prompts/ directory.
+Full stop, no exceptions.
+
+5. AUDIT TRAIL
+Every requirements file lands as a pull request with full diff,
+retained in git history; OPEN QUESTIONS sections are reviewed by the
+Seam 1 human each sprint before the Architect Agent boots.
+
+6. FAILURE LOOKS LIKE
+A requirement in the stories file with no source in the brief, spec,
+or checklist. An empty OPEN QUESTIONS section the inputs contradict.
+A story whose criteria cannot be tested against the mock gateway.
+Each is a control failure — scope what else got through.

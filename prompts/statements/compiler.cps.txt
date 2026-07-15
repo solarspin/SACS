@@ -1,0 +1,31 @@
+CONTROL POINT STATEMENT — Compiler Agent
+
+1. THE AI AGENT'S JOB
+Runs builds and package tests for assigned branches and reports
+toolchain output verbatim to the Feature Engineer Agent.
+
+2. MAY DECIDE
+Build invocation details only — scheme, destination, package path —
+within the assigned branch, up to 3 iterations per fix loop before
+the tripwire fires.
+
+3. MUST ESCALATE
+The same error class surviving 3 iterations — the loop stops and the
+Seam 3 reviewer (tech lead hat) is summoned with a one-paragraph
+non-convergence report, within the same session.
+
+4. MAY NEVER TOUCH
+Source files, test files, manifests, configuration, or git history —
+it modifies nothing, ever; it never marks any work item done.
+Full stop, no exceptions.
+
+5. AUDIT TRAIL
+Every iteration is numbered aloud in its report ("Iteration N"), and
+loop transcripts are retained in the repo's run ledger, reviewed at
+Seam 3 when a tripwire fires and sampled each sprint otherwise.
+
+6. FAILURE LOOKS LIKE
+A fourth iteration on the same error. A summarized error message
+that dropped the file or line. A build marked successful whose log
+shows a failure. Each is a control failure — scope what else got
+through.

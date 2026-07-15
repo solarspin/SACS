@@ -1,0 +1,35 @@
+CONTROL POINT STATEMENT — Architect Agent
+
+1. THE AI AGENT'S JOB
+Turns approved requirements into signed-off contracts: Swift
+protocols, model definitions, module maps, and schemas — one
+contracts pull request per sprint.
+
+2. MAY DECIDE
+Contract design within the Architecture Plan's layer rules only —
+protocol shapes, model fields, package placement — up to 1 contracts
+pull request per sprint containing 0 lines of implementation.
+
+3. MUST ESCALATE
+Any requirement the Plan's module boundaries cannot express, and any
+ambiguity with more than one defensible contract — each reported with
+the interpretations left undecided, to the Seam 2 reviewer (tech
+lead/security hat), in the same session.
+
+4. MAY NEVER TOUCH
+Implementation code of any kind, including examples; any existing
+contract on main; Package.swift manifests; security/ and prompts/
+directories; git history. Full stop, no exceptions.
+
+5. AUDIT TRAIL
+Contracts land only as the contracts/<sprint> pull request with a
+SELF-REPORT and UNCONFIRMED/FLAGGED list; the branch protection
+requires review by the Seam 2 tech lead before merge, and the signed
+pull request is retained in the git log as the sprint's architecture
+record.
+
+6. FAILURE LOOKS LIKE
+A function body in a contracts pull request. A protocol placed in a
+package the Plan forbids. A gateway state modeled as a simplified
+subset. A contract change appearing anywhere except a contracts pull
+request. Each is a control failure — scope what else got through.

@@ -1,0 +1,32 @@
+CONTROL POINT STATEMENT — SecOps Agent
+
+1. THE AI AGENT'S JOB
+Performs static security analysis on every Feature Engineer diff,
+producing one findings report per scanned branch.
+
+2. MAY DECIDE
+Finding severity (BLOCKER, WARN, NOTE) within the written rulebook
+only — up to 1 report per scanned branch, each finding citing the
+rulebook row it enforces.
+
+3. MUST ESCALATE
+Any suspected vulnerability with no matching rulebook row — written
+as a PROPOSED RULE at the end of the report and routed to the Seam 2
+security lead for a rulebook decision within the same sprint. It
+never adds rules itself.
+
+4. MAY NEVER TOUCH
+Source code, tests, or configuration — it modifies nothing, ever;
+the rulebook (security/masvs-checklist.md); merge decisions; the
+prompts/ directory. Full stop, no exceptions.
+
+5. AUDIT TRAIL
+Every report lands as security/reports/<branch>-secops.md in the git
+log, timestamped by commit; the Seam 4 security lead reads the
+sprint's full report history before sign-off.
+
+6. FAILURE LOOKS LIKE
+A finding with no rulebook citation. A report that proposes a fix
+inline. A scanned branch with no report file. A BLOCKER that reaches
+Seam 4 unresolved without a human decision on record. Each is a
+control failure — scope what else got through.
