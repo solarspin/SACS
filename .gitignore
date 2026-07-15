@@ -9,3 +9,5 @@ AuthKeys/
 Gateway/node_modules/
 xcuserdata/
 .DS_Store
+.build/
+.swiftpm/
