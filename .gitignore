@@ -1,0 +1,11 @@
+
+# --- BankSmartAI: secrets never enter version control, which means they
+# --- never enter any AI agent's context (AI agents read the repo).
+Secrets.xcconfig
+.env
+*.p8
+*.p12
+AuthKeys/
+Gateway/node_modules/
+xcuserdata/
+.DS_Store
