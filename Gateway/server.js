@@ -4,7 +4,10 @@
  *
  * Local. Deterministic. Zero dependencies. No real money, ever.
  * Behaves like a banking core from the app's point of view:
- *   - JWT-style auth with a ROLE claim (owner | staff)
+ *   - JWT-style auth with a ROLE claim (owner | staff), plus one-time-use
+ *     rotating refresh tokens (POST /auth/refresh) — added per the signed
+ *     Sprint 1 Q2 decision (2026-07-15): the Keychain stores a refresh
+ *     token behind biometric, never the password
  *   - accounts / transactions with exact decimal-string amounts
  *   - transfers with an approval threshold: over-threshold parks in
  *     PENDING_APPROVAL until an owner approves (dual control as a state)
@@ -26,6 +29,9 @@ const PORT = process.env.PORT || 4000;
 const SECRET = "local-demo-secret-not-a-real-key";
 const APPROVAL_THRESHOLD_CENTS = 10_000_00; // $10,000.00
 const SETTLE_MS = { toPending: 1500, toCompleted: 4000 };
+// Refresh-token lifetime: 45 days, DECIDED (Adam Fisher, 2026-07-15) per
+// the Sprint 1 Q2 follow-up. Override for testing: REFRESH_TTL_SECONDS.
+const REFRESH_TTL_SECONDS = parseInt(process.env.REFRESH_TTL_SECONDS || String(45 * 24 * 3600), 10);
 
 // ---------------------------------------------------------------------------
 // Seed data — identical on every boot and every POST /reset.
@@ -64,6 +70,17 @@ function tx(id, date, description, amountCents) {
 }
 
 let db = seed();
+
+// Refresh tokens are opaque, server-held, and one-time use: each successful
+// refresh rotates the token, so a stolen-and-already-used token dies loudly
+// (401) instead of working quietly. Cleared on /reset like everything else.
+const refreshTokens = new Map(); // token -> { email, expiresAt }
+
+function issueRefreshToken(email) {
+  const token = "rt-" + crypto.randomBytes(32).toString("hex");
+  refreshTokens.set(token, { email, expiresAt: Date.now() + REFRESH_TTL_SECONDS * 1000 });
+  return token;
+}
 
 // ---------------------------------------------------------------------------
 // Money formatting — cents in, exact decimal string out.
@@ -145,6 +162,7 @@ const server = http.createServer(async (req, res) => {
 
   if (path === "/reset" && req.method === "POST") {
     db = seed();
+    refreshTokens.clear();
     return send(200, { ok: true, reset: true });
   }
 
@@ -152,7 +170,33 @@ const server = http.createServer(async (req, res) => {
     const user = USERS[body.email];
     if (!user || user.password !== body.password) return send(401, { error: "invalid credentials" });
     const token = sign({ sub: body.email, role: user.role, name: user.name, exp: Math.floor(Date.now() / 1000) + 3600 });
-    return send(200, { token, role: user.role, expiresInSeconds: 3600 });
+    return send(200, {
+      token, role: user.role, expiresInSeconds: 3600,
+      refreshToken: issueRefreshToken(body.email),
+      refreshExpiresInSeconds: REFRESH_TTL_SECONDS,
+    });
+  }
+
+  if (path === "/auth/refresh" && req.method === "POST") {
+    const rec = refreshTokens.get(body.refreshToken);
+    if (!rec) {
+      return send(401, {
+        error: "unknown or already-used refresh token",
+        hint: "refresh tokens are one-time use; the app must fall back to a fresh login",
+      });
+    }
+    if (rec.expiresAt < Date.now()) {
+      refreshTokens.delete(body.refreshToken);
+      return send(401, { error: "refresh token expired" });
+    }
+    refreshTokens.delete(body.refreshToken); // rotation: each token works exactly once
+    const user = USERS[rec.email];
+    const token = sign({ sub: rec.email, role: user.role, name: user.name, exp: Math.floor(Date.now() / 1000) + 3600 });
+    return send(200, {
+      token, role: user.role, expiresInSeconds: 3600,
+      refreshToken: issueRefreshToken(rec.email),
+      refreshExpiresInSeconds: REFRESH_TTL_SECONDS,
+    });
   }
 
   // ---- everything below requires auth ------------------------------------

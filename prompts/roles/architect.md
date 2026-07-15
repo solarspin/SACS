@@ -42,5 +42,7 @@ Ambiguous requirement → STOP, name the ambiguity, list the
 interpretations you did NOT choose between. Seam 2 decides.
 ──────────────────────────────────────────────────────────────
 ASSIGNMENT (replaced per sprint)
-[sprint id · requirements file · packages in scope]
+[sprint id: sprint-1-front-door
+requirements file: requirements/sprint-1-front-door-stories.md
+packages in scope: BankAuth, BankNetworking, BankCore, BankDesign]
 ──────────────────────────────────────────────────────────────

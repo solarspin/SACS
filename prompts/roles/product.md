@@ -53,7 +53,8 @@ tokens in Keychain, never UserDefaults; the role claim (owner /
 staff) enforced on every screen that needs it.
 
 GATEWAY SURFACE IN SCOPE THIS SPRINT
-POST /auth/login only. Every other endpoint (accounts, transfers,
+POST /auth/login and POST /auth/refresh
+ Every other endpoint (accounts, transfers,
 approvals) is out of scope — Sprint 1 proves sign-in and roles,
 nothing downstream of them. Two demo logins:
 owner@banksmart.test / owner-demo-1 (role: owner) and

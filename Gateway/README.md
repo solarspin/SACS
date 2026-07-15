@@ -7,10 +7,10 @@ Demo logins (fake by design — printable in a book):
 - owner@banksmart.test / owner-demo-1  (role: owner — may approve)
 - staff@banksmart.test / staff-demo-1  (role: staff — 403 on approvals)
 
-Endpoints: POST /auth/login · GET /accounts · GET /accounts/:id ·
-GET /accounts/:id/transactions · POST /transfers · GET /transfers/:id ·
-GET /approvals · POST /approvals/:id/approve|reject · GET /health ·
-POST /reset
+Endpoints: POST /auth/login · POST /auth/refresh · GET /accounts ·
+GET /accounts/:id · GET /accounts/:id/transactions · POST /transfers ·
+GET /transfers/:id · GET /approvals · POST /approvals/:id/approve|reject ·
+GET /health · POST /reset
 
 Transfers over $10,000.00 park in PENDING_APPROVAL until an owner
 decides. Settlement is asynchronous: INITIATED/APPROVED → PENDING →
@@ -29,8 +29,30 @@ never numbers, never floats. Account ids: `acct-operating`,
 **POST /auth/login**
 ```
 { "email": "owner@banksmart.test", "password": "owner-demo-1" }
-→ 200 { "token": "<jwt>", "role": "owner", "expiresInSeconds": 3600 }
+→ 200 { "token": "<jwt>", "role": "owner", "expiresInSeconds": 3600,
+        "refreshToken": "rt-<64 hex chars>",
+        "refreshExpiresInSeconds": 3888000 }
 → 401 { "error": "invalid credentials" }
+```
+
+**POST /auth/refresh** — added per the signed Sprint 1 Q2 decision
+(2026-07-15): after session expiry, biometric unlocks the Keychain-held
+refresh token — never a stored password — and exchanges it here for a
+fresh session. Refresh tokens are **one-time use**: every successful
+refresh returns a NEW refresh token and kills the old one, so an
+already-used (possibly stolen) token fails loudly instead of working
+quietly. Lifetime: 45 days — DECIDED (Adam Fisher, 2026-07-15); override
+for testing with env `REFRESH_TTL_SECONDS`. All refresh tokens are
+invalidated by `POST /reset`.
+```
+{ "refreshToken": "rt-<64 hex chars>" }
+→ 200 { "token": "<jwt>", "role": "owner", "expiresInSeconds": 3600,
+        "refreshToken": "rt-<new one — store it, old one is dead>",
+        "refreshExpiresInSeconds": 3888000 }
+→ 401 { "error": "unknown or already-used refresh token",
+        "hint": "refresh tokens are one-time use; the app must fall
+                 back to a fresh login" }
+→ 401 { "error": "refresh token expired" }
 ```
 
 **GET /accounts**
