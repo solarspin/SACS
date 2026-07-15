@@ -1,0 +1,9 @@
+{
+  "name": "banksmart-gateway",
+  "version": "1.0.0",
+  "description": "BankSmartAI mock banking gateway — local, deterministic, zero dependencies, no real money ever.",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "license": "UNLICENSED",
+  "private": true
+}
