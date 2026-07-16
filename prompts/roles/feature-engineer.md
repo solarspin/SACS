@@ -53,41 +53,36 @@ argue with is not one you may cross.
 ──────────────────────────────────────────────────────────────
 ASSIGNMENT (replaced per task — see the sprint briefs)
 
-ASSIGNMENT ID: sprint-1-auth-gateway-client
+ASSIGNMENT ID: sprint-1-auth-bankauth
 
-PACKAGE YOU MAY MODIFY: BankNetworking (this package only)
+PACKAGE YOU MAY MODIFY: BankAuth (this package only)
 
 CONTRACTS IN SCOPE (signed, on main):
-- AuthGatewayClient (signIn, refreshSession, discardRefreshToken,
-  clearSession, currentSession)
-- AuthSession
-- AuthError (invalidCredentials, refreshFailed, transport)
-- JWTRoleClaimDecoding
+- AuthSessionRepository, ReentryGateRepository
+- LockoutPolicy, IdleTimeoutPolicy
+- BiometricCapabilityChecking, BiometricGating
+- BiometricEnrollmentPreferenceStoring
+- SessionPhase
+- SignInViewModeling, LandingViewModeling,
+  BiometricGateViewModeling, BiometricEnrollmentPromptViewModeling
 
-ACCEPTANCE CRITERIA THIS ASSIGNMENT MUST SATISFY (from
-requirements/sprint-1-front-door-stories.md):
-AC-1.1, AC-1.2 (signIn succeeds for both demo roles); AC-1.3 (401 →
-AuthError.invalidCredentials, never swallowed); AC-1.4, AC-1.6 (token
-+ refreshToken in Keychain, kSecAttrAccessibleAfterFirstUnlock, never
-UserDefaults/plist/log — S1, S3); AC-1.5 (role decoded from the JWT
-claim via JWTRoleClaimDecoding, never the response's separate
-top-level role field); AC-4.4 (currentSession nil/expired — no cached
-token grants entry); AC-6.1 (an expired token never presented again);
-AC-6.2 (refreshSession sends the stored refreshToken, never the
-password); AC-6.3 (successful refresh atomically replaces all four
-fields; old refreshToken never reused); AC-6.4, AC-6.5 (both
-refresh-401 variants throw AuthError.refreshFailed, fall back to
-signIn); AC-6.6 (any 401 is a control signal — write the test even
-with no other authenticated endpoint yet to exercise it against);
-AC-7.2 (same Keychain storage regardless of which caller invoked
-signIn).
+DO NOT re-implement gateway calls, Keychain storage, or JWT
+decoding — that's LiveAuthGatewayClient in BankNetworking,
+already merged. Call through AuthGatewayClient; never duplicate
+its logic.
 
-SCOPE-OUTS (the next assignment, against BankAuth, covers these):
-- No lockout counting, idle-timeout tracking, or biometric gating.
-- No UI, no view models, no landing state.
-- No enrollment-opt-in decision logic — you implement
-  discardRefreshToken; BankAuth decides when to call it.
-- No logging, caching, or persistence of Credential beyond passing
-  it through to the request body.
+ACCEPTANCE CRITERIA THIS ASSIGNMENT MUST SATISFY:
+Story 5 in full (AC-5.1–AC-5.4 — the landing state); Story 2 in
+full (biometric gating, AC-2.1–AC-2.4); Story 3 in full (passcode
+fallback, AC-3.1–AC-3.3); Story 4 in full (lockout, AC-4.1–AC-4.5);
+Story 7 in full (no-biometric fallback, AC-7.1–AC-7.2); Story 8 in
+full (enrollment opt-in, AC-8.1–AC-8.3); AC-6.2's trigger condition
+specifically (a successful biometric gate calls refreshSession —
+the request/response handling itself is already done).
+
+SCOPE-OUTS:
+- No changes to BankNetworking, BankCore, or BankDesign.
+- No new gateway calls beyond what AuthGatewayClient exposes.
+
 
 ──────────────────────────────────────────────────────────────
