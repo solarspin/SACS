@@ -63,4 +63,11 @@ still build unmodified against the additive public surface.
   `Secrets.xcconfig` actually produces the loud, immediate crash the comment promises, rather than
   a silent `nil`/empty string surviving somewhere.
 
-I looked it over, It is a clean run. And if you flag this I will be sad.
+
+REVIEWED (Seam 3, Adam Fisher, 2026-07-16): 5 of 6 FLAGGED items required
+no action (sound defaults or correctly deferred to QA). Item 1
+(discardRefreshToken silent failure) fixed at commit 331f863 —
+Logger.error replaces assertionFailure, survives release builds, no
+token/credential in the message. Build + full test suite verified green
+independently by the Compiler Agent (main @ ded6983, 13/13 passing).
+Merged to main. Closed.
