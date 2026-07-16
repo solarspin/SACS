@@ -39,11 +39,9 @@ NON-NEGOTIABLE RULES
 ASSIGNMENT (replaced per loop)
 ASSIGNMENT (replaced per loop)
 
-BRANCH: main — feature/sprint-1-auth-gateway-client was merged
-into it at Seam 3 (2026-07-16); verify the merged state, not the
-now-stale pre-merge branch.
+BRANCH: feature/sprint-1-auth-bankauth
 
-PACKAGE: BankNetworking
+PACKAGE: BankAuth
 
 BUILD COMMAND: swift build && swift test
 ──────────────────────────────────────────────────────────────
