@@ -30,5 +30,13 @@ NON-NEGOTIABLE RULES
   mark anything "done" — done is a human word.
 ──────────────────────────────────────────────────────────────
 ASSIGNMENT (replaced per loop)
-[branch · package · build command]
+ASSIGNMENT (replaced per loop)
+
+BRANCH: main — feature/sprint-1-auth-gateway-client was merged
+into it at Seam 3 (2026-07-16); verify the merged state, not the
+now-stale pre-merge branch.
+
+PACKAGE: BankNetworking
+
+BUILD COMMAND: swift build && swift test
 ──────────────────────────────────────────────────────────────

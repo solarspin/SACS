@@ -195,6 +195,14 @@
 			);
 			mainGroup = C669AD1630071A8D00288310;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				C669AD5530097C4800288310 /* XCLocalSwiftPackageReference "Packages/BankNetworking" */,
+				C669AD6230097D7B00288310 /* XCLocalSwiftPackageReference "Packages/BankAuth" */,
+				C669AD6330097D9700288310 /* XCLocalSwiftPackageReference "Packages/BankDesign" */,
+				C669AD6430097DC500288310 /* XCLocalSwiftPackageReference "Packages/BankTransfers" */,
+				C669AD6530097DD900288310 /* XCLocalSwiftPackageReference "Packages/BankTreasury" */,
+				C669AD663009803100288310 /* XCLocalSwiftPackageReference "Packages/BankCore" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = C669AD2030071A8D00288310 /* Products */;
 			projectDirPath = "";
@@ -410,6 +418,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rgb16.BankSmartAI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -442,6 +451,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				NEW_SETTING = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.rgb16.BankSmartAI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
@@ -578,6 +588,33 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		C669AD5530097C4800288310 /* XCLocalSwiftPackageReference "Packages/BankNetworking" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/BankNetworking;
+		};
+		C669AD6230097D7B00288310 /* XCLocalSwiftPackageReference "Packages/BankAuth" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/BankAuth;
+		};
+		C669AD6330097D9700288310 /* XCLocalSwiftPackageReference "Packages/BankDesign" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/BankDesign;
+		};
+		C669AD6430097DC500288310 /* XCLocalSwiftPackageReference "Packages/BankTransfers" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/BankTransfers;
+		};
+		C669AD6530097DD900288310 /* XCLocalSwiftPackageReference "Packages/BankTreasury" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/BankTreasury;
+		};
+		C669AD663009803100288310 /* XCLocalSwiftPackageReference "Packages/BankCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/BankCore;
+		};
+/* End XCLocalSwiftPackageReference section */
 	};
 	rootObject = C669AD1730071A8D00288310 /* Project object */;
 }
