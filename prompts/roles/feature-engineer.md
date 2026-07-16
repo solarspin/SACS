@@ -52,6 +52,42 @@ You never decide to work around a boundary — a boundary you can
 argue with is not one you may cross.
 ──────────────────────────────────────────────────────────────
 ASSIGNMENT (replaced per task — see the sprint briefs)
-[assignment-id · package · contracts in scope · acceptance
-criteria · scope-outs]
+
+ASSIGNMENT ID: sprint-1-auth-gateway-client
+
+PACKAGE YOU MAY MODIFY: BankNetworking (this package only)
+
+CONTRACTS IN SCOPE (signed, on main):
+- AuthGatewayClient (signIn, refreshSession, discardRefreshToken,
+  clearSession, currentSession)
+- AuthSession
+- AuthError (invalidCredentials, refreshFailed, transport)
+- JWTRoleClaimDecoding
+
+ACCEPTANCE CRITERIA THIS ASSIGNMENT MUST SATISFY (from
+requirements/sprint-1-front-door-stories.md):
+AC-1.1, AC-1.2 (signIn succeeds for both demo roles); AC-1.3 (401 →
+AuthError.invalidCredentials, never swallowed); AC-1.4, AC-1.6 (token
++ refreshToken in Keychain, kSecAttrAccessibleAfterFirstUnlock, never
+UserDefaults/plist/log — S1, S3); AC-1.5 (role decoded from the JWT
+claim via JWTRoleClaimDecoding, never the response's separate
+top-level role field); AC-4.4 (currentSession nil/expired — no cached
+token grants entry); AC-6.1 (an expired token never presented again);
+AC-6.2 (refreshSession sends the stored refreshToken, never the
+password); AC-6.3 (successful refresh atomically replaces all four
+fields; old refreshToken never reused); AC-6.4, AC-6.5 (both
+refresh-401 variants throw AuthError.refreshFailed, fall back to
+signIn); AC-6.6 (any 401 is a control signal — write the test even
+with no other authenticated endpoint yet to exercise it against);
+AC-7.2 (same Keychain storage regardless of which caller invoked
+signIn).
+
+SCOPE-OUTS (the next assignment, against BankAuth, covers these):
+- No lockout counting, idle-timeout tracking, or biometric gating.
+- No UI, no view models, no landing state.
+- No enrollment-opt-in decision logic — you implement
+  discardRefreshToken; BankAuth decides when to call it.
+- No logging, caching, or persistence of Credential beyond passing
+  it through to the request body.
+
 ──────────────────────────────────────────────────────────────
