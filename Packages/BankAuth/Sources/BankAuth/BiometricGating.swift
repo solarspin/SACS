@@ -22,9 +22,17 @@ public enum BiometricGateOutcome: Equatable, Sendable {
 ///
 /// Must never be called when `BiometricCapabilityChecking.capability`
 /// is `.unavailable` (Story 7) — that path uses
-/// `AuthSessionRepository.signIn` instead.
+/// `AuthSessionRepository.signIn` instead. Deliberately internal, not
+/// public: `ReentryGateRepository`'s implementation is the only thing
+/// that may call `evaluate()`, since it is the only thing that checks
+/// capability and lockout first. Making this type invisible outside
+/// BankAuth — including to the App composition root — turns that
+/// precondition from a doc comment into something the compiler enforces
+/// for every package boundary; only a same-module caller inside BankAuth
+/// could still get it wrong, which is a QA/code-review concern from here.
 ///
-/// Owned by: BankAuth. Not exposed to any other package.
-public protocol BiometricGating: Sendable {
+/// Owned by: BankAuth. Not exposed to any other package — enforced by
+/// the compiler, not just this comment.
+protocol BiometricGating: Sendable {
     func evaluate() async -> BiometricGateOutcome
 }

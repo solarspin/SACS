@@ -18,7 +18,7 @@ public protocol AuthSessionRepository: Sendable {
     /// before rethrowing (DECISION Q5) — the 401 is never swallowed
     /// (S7). On success, calls `LockoutPolicy.reset()` (AC-4.3, DECISION
     /// Q6) and returns the decoded role.
-    func signIn(email: String, password: String) async throws -> Role
+    func signIn(email: String, password: Credential) async throws -> Role
 
     /// AC-6.2–6.5. Wraps `AuthGatewayClient.refreshSession()`. Never
     /// records a lockout failure on any `AuthError.refreshFailed`

@@ -9,6 +9,11 @@ import BankCore
 @MainActor
 public protocol SignInViewModeling: AnyObject {
     var email: String { get set }
+    /// A plain `String` deliberately: this is the one place a password
+    /// legitimately stays raw, because it is bound directly to SwiftUI's
+    /// `SecureField`. `signIn()` must wrap it in a `Credential` (BankCore)
+    /// at the call into `AuthSessionRepository` — nothing past that
+    /// point in the app may see the raw `String` again.
     var password: String { get set }
     var isSubmitting: Bool { get }
     /// Non-nil after a 401 (AC-1.3) — the failure is surfaced visibly,

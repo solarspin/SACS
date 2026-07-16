@@ -20,7 +20,7 @@ public protocol AuthGatewayClient: Sendable {
     /// Calls `POST /auth/login`. AC-1.1, AC-1.2.
     /// - Throws: `AuthError.invalidCredentials` on a 401
     ///   (AC-1.3), `AuthError.transport` otherwise.
-    func signIn(email: String, password: String) async throws -> AuthSession
+    func signIn(email: String, password: Credential) async throws -> AuthSession
 
     /// Calls `POST /auth/refresh` with the Keychain-stored
     /// `refreshToken` — never a password (AC-6.2). On success,
