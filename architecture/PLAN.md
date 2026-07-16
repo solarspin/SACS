@@ -42,3 +42,18 @@ $10,000.00. Demo roles: owner@banksmart.test / staff@banksmart.test.
 Failure injection: x-latency, x-fail, x-drop-after-accept headers.
 
 SIGNED (Seam 2): Adam Fisher______________________  DATE: 07/15/2026__________
+
+## SIGN-OFF RECORD — Sprint 1 contracts
+
+```
+SIGN-OFF RECORD
+Reviewed:  contracts/sprint-1-front-door, commits 0937541, 754c5e5
+Procedure: seams/seam-2.md v1.0 — all 8 items run
+Found:     BiometricGating callable outside BankAuth with no compiler-
+           enforced capability check — fixed (narrowed to internal).
+           password: String had no defense-in-depth against accidental
+           logging — fixed (Credential wrapper, redacted description,
+           non-Codable). Items 4 (every criterion has a home) and 7
+           (states & transitions) reviewed clean, nothing found.
+Signed:    Adam Fisher, Seam 2 (tech lead hat) — 2026-07-16
+```
