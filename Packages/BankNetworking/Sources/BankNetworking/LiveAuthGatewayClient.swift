@@ -1,11 +1,14 @@
 import Foundation
 import BankCore
+import os
 
 /// The `AuthGatewayClient` conformance backing every real signIn/refresh
 /// call against `POST /auth/login` and `POST /auth/refresh`. An `actor`
 /// so concurrent calls (e.g. a foreground refresh racing a background
 /// sign-out) serialize instead of racing on the same Keychain entry.
 public actor LiveAuthGatewayClient: AuthGatewayClient {
+    private static let logger = Logger(subsystem: "com.banksmartai.BankNetworking", category: "Auth")
+
     private let baseURL: URL
     private let urlSession: URLSession
     private let jwtDecoder: JWTRoleClaimDecoding
@@ -81,11 +84,12 @@ public actor LiveAuthGatewayClient: AuthGatewayClient {
             // `discardRefreshToken()` is a non-throwing requirement on
             // `AuthGatewayClient` — there is no channel to surface a
             // Keychain write failure to the caller. This is not a `try?`
-            // silently swallowing it: it's surfaced loudly in debug
-            // builds and flagged in this assignment's SELF-REPORT as a
-            // contract gap worth Seam 3's attention. No sensitive value
-            // is in `error` — only an OSStatus-derived message (S9).
-            assertionFailure("discardRefreshToken: Keychain write failed — \(error)")
+            // silently swallowing it: `Logger` (unlike `assertionFailure`,
+            // which compiles out of release builds) survives into
+            // production, so this failure is still visible there. Only
+            // an OSStatus-derived message is logged — no token, no
+            // credential, nothing S9 forbids.
+            Self.logger.error("discardRefreshToken: Keychain write failed — \(String(describing: error), privacy: .public)")
         }
     }
 

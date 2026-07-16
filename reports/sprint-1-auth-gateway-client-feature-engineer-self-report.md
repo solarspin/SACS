@@ -23,12 +23,15 @@ still build unmodified against the additive public surface.
 
 ## UNCONFIRMED / FLAGGED
 
-- **`discardRefreshToken()`'s Keychain write failure has no error channel.** The signed contract
-  declares it non-throwing. I don't swallow the failure with `try?` — a failed write triggers
-  `assertionFailure` (debug-build-only, no production log, no sensitive value in the message) —
-  but a real device Keychain failure in production would go unreported. Verify by: deciding at
-  Seam 3/Architect whether this method should become `throws`, or whether best-effort is
-  acceptable given the caller (a Story 8 decline) has no recovery action to take anyway.
+- **FIXED (Seam 3 review, same branch):** `discardRefreshToken()`'s Keychain write failure had no
+  error channel — the signed contract declares it non-throwing, and the original `assertionFailure`
+  compiles out of release builds, so a real device failure there would have gone unreported in
+  production. Replaced with `Logger.error(...)` (unified logging, `os`), which survives release
+  builds; the logged message is only an OSStatus-derived string ("Keychain write failed —
+  ..."), no token or credential (S9). The method signature is unchanged — still non-throwing, no
+  contract change. Residual, not fixed: the caller still has no programmatic signal that the
+  discard failed, only an entry in the system log a human could go looking for. That's an accepted
+  tradeoff given the contract's non-throwing signature, not something I'd flag as still open.
 - **`refreshSession()` 401 clears the whole stored session, not just the refresh half.** The
   contract's own doc comment only says "the caller must fall back to `signIn`" for both 401
   variants; it doesn't specify what happens to the still-technically-unexpired session token. I
