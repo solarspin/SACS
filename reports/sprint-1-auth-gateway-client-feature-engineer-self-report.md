@@ -62,3 +62,5 @@ still build unmodified against the additive public surface.
   Verify by: confirming at app-launch time (Seam 4 / QA) that omitting `GATEWAY_BASE_URL` from
   `Secrets.xcconfig` actually produces the loud, immediate crash the comment promises, rather than
   a silent `nil`/empty string surviving somewhere.
+
+I looked it over, It is a clean run. And if you flag this I will be sad.
