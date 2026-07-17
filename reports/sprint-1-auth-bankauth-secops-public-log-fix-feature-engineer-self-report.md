@@ -33,3 +33,8 @@ observable behavior a test could assert on without inspecting the system log its
   standing decision for you, not part of this fix.") — so I did not touch
   `security/masvs-checklist.md` or act on the proposed S9 extension. Noting it's still open, for
   whoever owns that decision.
+REVIEWED (Seam 3, Adam Fisher, 2026-07-16): the log-message-contract
+note is intended behavior, no action needed. The PROPOSED RULES item
+(extending S9 to require bounded content on .public log lines)
+remains OPEN — not decided, not blocking this fix or the merge,
+tracked separately for the checklist. Closed for this diff.

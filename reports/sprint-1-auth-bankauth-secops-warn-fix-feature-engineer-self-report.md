@@ -24,3 +24,9 @@ observability, not behavior, and the existing regression tests already cover the
   the `discardRefreshToken` precedent exactly rather than distinguishing "expected" from
   "abnormal"), that's a one-word change. Verify by: confirming the desired log level with whoever
   needs to actually go looking for this in a real device log later.
+
+REVIEWED (Seam 3, Adam Fisher, 2026-07-16): .debug vs .error choice
+confirmed as sound reasoning — a dead refresh token is an expected
+outcome, not a malfunction; no change needed. SecOps re-scanned this
+diff and found a separate, unrelated issue (S9, .public privacy
+content-boundedness), not this FLAGGED item. Closed.
