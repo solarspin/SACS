@@ -83,8 +83,14 @@ public actor LiveReentryGateRepository: ReentryGateRepository {
                     // back to a fresh sign-in. Logged (not silent) so a
                     // future edit to either method can't lose this
                     // outcome without a local signal — no token or
-                    // credential in the message (S9).
-                    Self.logger.debug("presentBiometricGate: refreshSession failed after a successful gate — \(String(describing: error), privacy: .public)")
+                    // credential in the message (S9). Logs a fixed
+                    // category string, never the raw error description:
+                    // AppError.serverError/.unknown carry gateway-
+                    // supplied text that this app doesn't control, and
+                    // a `.public` log line must stay within a bounded,
+                    // client-defined content space regardless of what a
+                    // future gateway response might contain.
+                    Self.logger.debug("presentBiometricGate: refreshSession failed after a successful gate — \(Self.logCategory(for: error), privacy: .public)")
                 }
             }
         case .failed(let kind):
@@ -108,5 +114,43 @@ public actor LiveReentryGateRepository: ReentryGateRepository {
         // DECISION Q11: an unguarded refresh token must not persist
         // once biometric re-entry is declined.
         await gatewayClient.discardRefreshToken()
+    }
+
+    /// A closed switch over every known `AuthError`/`AppError` case,
+    /// returning only fixed, client-defined strings — never an
+    /// associated message. `refreshSession()` only ever throws
+    /// `AuthError` (see `AuthGatewayClient`'s doc comment), so `nil`
+    /// below should be unreachable in practice; it's kept only so this
+    /// switch stays exhaustive and safe against a future error type
+    /// this method doesn't yet know about.
+    private static func logCategory(for error: Error) -> String {
+        guard let authError = error as? AuthError else {
+            return "unknownErrorType"
+        }
+        switch authError {
+        case .invalidCredentials:
+            return "invalidCredentials"
+        case .refreshFailed:
+            return "refreshFailed"
+        case .transport(let appError):
+            switch appError {
+            case .offline:
+                return "transport-offline"
+            case .timeout:
+                return "transport-timeout"
+            case .serverUnreachable:
+                return "transport-serverUnreachable"
+            case .unauthorized:
+                return "transport-unauthorized"
+            case .forbidden:
+                return "transport-forbidden"
+            case .serverError:
+                return "transport-serverError"
+            case .decoding:
+                return "transport-decoding"
+            case .unknown:
+                return "transport-unknown"
+            }
+        }
     }
 }
