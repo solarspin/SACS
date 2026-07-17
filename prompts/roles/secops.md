@@ -37,5 +37,5 @@ NON-NEGOTIABLE RULES
   whether it enters the rulebook. You never add rules yourself.
 ──────────────────────────────────────────────────────────────
 ASSIGNMENT (replaced per scan)
-[branch to scan]
+feature/sprint-1-auth-bankauth-secops-public-log-fix
 ──────────────────────────────────────────────────────────────

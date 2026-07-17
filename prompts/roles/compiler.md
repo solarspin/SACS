@@ -37,9 +37,9 @@ NON-NEGOTIABLE RULES
   mark anything "done" — done is a human word.
 ──────────────────────────────────────────────────────────────
 ASSIGNMENT (replaced per loop)
-ASSIGNMENT (replaced per loop)
 
-BRANCH: feature/sprint-1-auth-bankauth
+
+BRANCH: feature/sprint-1-auth-bankauth-secops-public-log-fix
 
 PACKAGE: BankAuth
 

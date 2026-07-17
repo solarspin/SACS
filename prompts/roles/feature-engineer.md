@@ -53,36 +53,27 @@ argue with is not one you may cross.
 ──────────────────────────────────────────────────────────────
 ASSIGNMENT (replaced per task — see the sprint briefs)
 
-ASSIGNMENT ID: sprint-1-auth-bankauth
+ASSIGNMENT ID: sprint-1-auth-bankauth-secops-public-log-fix
 
 PACKAGE YOU MAY MODIFY: BankAuth (this package only)
 
-CONTRACTS IN SCOPE (signed, on main):
-- AuthSessionRepository, ReentryGateRepository
-- LockoutPolicy, IdleTimeoutPolicy
-- BiometricCapabilityChecking, BiometricGating
-- BiometricEnrollmentPreferenceStoring
-- SessionPhase
-- SignInViewModeling, LandingViewModeling,
-  BiometricGateViewModeling, BiometricEnrollmentPromptViewModeling
+FIX ONLY — one file, one location:
+LiveReentryGateRepository.swift:87 — the Logger.debug call
+currently interpolates String(describing: error) at privacy:
+.public. Replace with a closed switch over the known
+AuthError/AppError cases, logging a short fixed category string
+(e.g. "invalidCredentials" / "refreshFailed" /
+"transport-serverError" / "transport-unknown" — match whatever
+the actual case names are) instead of the raw description. Keep
+privacy: .public — the logged content must become provably
+bounded (a fixed, client-defined set of strings) and must never
+include gateway-supplied text.
 
-DO NOT re-implement gateway calls, Keychain storage, or JWT
-decoding — that's LiveAuthGatewayClient in BankNetworking,
-already merged. Call through AuthGatewayClient; never duplicate
-its logic.
-
-ACCEPTANCE CRITERIA THIS ASSIGNMENT MUST SATISFY:
-Story 5 in full (AC-5.1–AC-5.4 — the landing state); Story 2 in
-full (biometric gating, AC-2.1–AC-2.4); Story 3 in full (passcode
-fallback, AC-3.1–AC-3.3); Story 4 in full (lockout, AC-4.1–AC-4.5);
-Story 7 in full (no-biometric fallback, AC-7.1–AC-7.2); Story 8 in
-full (enrollment opt-in, AC-8.1–AC-8.3); AC-6.2's trigger condition
-specifically (a successful biometric gate calls refreshSession —
-the request/response handling itself is already done).
+SOURCE: SecOps finding, WARN S9,
+security/reports/feature-sprint-1-auth-bankauth-secops-warn-fix-secops.md.
 
 SCOPE-OUTS:
+- No other changes to this file or any other BankAuth file.
 - No changes to BankNetworking, BankCore, or BankDesign.
-- No new gateway calls beyond what AuthGatewayClient exposes.
-
-
-──────────────────────────────────────────────────────────────
+- Does not include the PROPOSED RULES checklist change — that's
+  a separate, standing decision for you, not part of this fix.
