@@ -1,8 +1,11 @@
 import Foundation
 import BankCore
 import BankNetworking
+import os
 
 public actor LiveReentryGateRepository: ReentryGateRepository {
+    private static let logger = Logger(subsystem: "com.banksmartai.BankAuth", category: "Auth")
+
     private let gatewayClient: AuthGatewayClient
     private let capabilityChecker: BiometricCapabilityChecking
     private let gating: BiometricGating
@@ -77,7 +80,11 @@ public actor LiveReentryGateRepository: ReentryGateRepository {
                     // reports); whether a valid session now exists is a
                     // separate question — AuthSessionRepository.currentRole
                     // will correctly report `nil`, routing the caller
-                    // back to a fresh sign-in.
+                    // back to a fresh sign-in. Logged (not silent) so a
+                    // future edit to either method can't lose this
+                    // outcome without a local signal — no token or
+                    // credential in the message (S9).
+                    Self.logger.debug("presentBiometricGate: refreshSession failed after a successful gate — \(String(describing: error), privacy: .public)")
                 }
             }
         case .failed(let kind):
