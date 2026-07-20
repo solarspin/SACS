@@ -53,27 +53,37 @@ argue with is not one you may cross.
 ──────────────────────────────────────────────────────────────
 ASSIGNMENT (replaced per task — see the sprint briefs)
 
-ASSIGNMENT ID: sprint-1-auth-bankauth-secops-public-log-fix
+ ASSIGNMENT ID: sprint-1-front-door-composition-root
 
-PACKAGE YOU MAY MODIFY: BankAuth (this package only)
+FILES YOU MAY MODIFY: BankSmartAI/BankSmartAIApp.swift,
+BankSmartAI/ContentView.swift, and new SwiftUI view files you add
+under BankSmartAI/ (the app target itself — not a package).
 
-FIX ONLY — one file, one location:
-LiveReentryGateRepository.swift:87 — the Logger.debug call
-currently interpolates String(describing: error) at privacy:
-.public. Replace with a closed switch over the known
-AuthError/AppError cases, logging a short fixed category string
-(e.g. "invalidCredentials" / "refreshFailed" /
-"transport-serverError" / "transport-unknown" — match whatever
-the actual case names are) instead of the raw description. Keep
-privacy: .public — the logged content must become provably
-bounded (a fixed, client-defined set of strings) and must never
-include gateway-supplied text.
+COMPOSITION ROOT EXCEPTION (stated explicitly because your role
+prompt would otherwise make you STOP the moment this touches
+anything outside a single package): this task is app-target wiring,
+not feature logic. Nothing in this sprint's Product/Architect work
+assigned composition-root ownership to anyone yet — this fixes that
+gap. You are not designing new behavior; you are connecting behavior
+that already exists and is already tested (82/82, BankAuth) to an
+actual screen a human can run.
 
-SOURCE: SecOps finding, WARN S9,
-security/reports/feature-sprint-1-auth-bankauth-secops-warn-fix-secops.md.
+TASK: Replace ContentView's Xcode-template body. Build real SwiftUI
+views, using ONLY the existing public BankAuth view models (the ones
+your own package already implements and QA already tested against)
+— no new business logic, no new view models, no changes inside
+BankAuth/BankNetworking/BankCore/BankDesign. Wire the actual reachable
+flow for this sprint: sign-in form → biometric enrollment offer
+(Story 8) → role-aware landing state (Story 5) → biometric re-entry
+gate on relaunch/foreground (Stories 2/3) → lockout state visibly
+shown, never silent (Story 4).
 
-SCOPE-OUTS:
-- No other changes to this file or any other BankAuth file.
-- No changes to BankNetworking, BankCore, or BankDesign.
-- Does not include the PROPOSED RULES checklist change — that's
-  a separate, standing decision for you, not part of this fix.
+SOURCE: the gapcope to catch —
+BankAuthApp target was never in either role's assignment. Found at
+Seam 4 device session (author, 2026-07-19): app runs,     shows the
+default template, nothing wired.                         
+SCOPE-OUTS:                                               - No changes ine app target.
+- No visualizer/treasury/transfer UI — not reachable this sprint.
+- If a screen needs something BankAuth's public interface doesn't
+  expose, STOP and report it — that's a missing contract, not
+  something to work around.

@@ -53,5 +53,10 @@ APPLIED table and cite the row; escalate only when no signed
 source supplies the value.
 ──────────────────────────────────────────────────────────────
 ASSIGNMENT (replaced per sprint)
-[sprint id · requirements file · contracts · built artifact]
+ASSIGNMENT (replaced per sprint)
+sprint id: sprint-1-front-door
+requirements file: requirements/sprint-1-front-door-stories.md
+contracts: Packages/BankAuth (+ BankNetworking, BankCore, BankDesign it depends on), on main
+built artifact: BankAuth package, verified by Compiler at 6f57c23 (33/33 tests) — QA tests
+against the public interface, not that diff
 ──────────────────────────────────────────────────────────────
