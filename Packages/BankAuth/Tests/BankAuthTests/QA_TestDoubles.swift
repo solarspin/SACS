@@ -225,6 +225,13 @@ actor QAFakeAuthSessionRepository: AuthSessionRepository {
     var currentRole: Role? {
         get async { role }
     }
+
+    private(set) var signOutCallCount = 0
+
+    func signOut() async {
+        signOutCallCount += 1
+        role = nil
+    }
 }
 
 // MARK: - ReentryGateRepository (BankAuth, public protocol)
