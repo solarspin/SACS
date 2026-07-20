@@ -4,5 +4,23 @@
 <dict>
 	<key>GATEWAY_BASE_URL</key>
 	<string>$(GATEWAY_BASE_URL)</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>BankSmartAI uses Face ID to securely verify it's you before showing your account and signing you back in.</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>localhost</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+			<key>192.168.68.84</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
 </dict>
 </plist>
