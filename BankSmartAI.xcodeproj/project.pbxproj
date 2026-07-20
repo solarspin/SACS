@@ -6,6 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		C6D01896300E7EE600002D72 /* BankAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C6D01895300E7EE600002D72 /* BankAuth */; };
+		C6D0189F300E800700002D72 /* BankNetworking in Frameworks */ = {isa = PBXBuildFile; productRef = C6D0189E300E800700002D72 /* BankNetworking */; };
+		C6D018A1300E801200002D72 /* BankDesign in Frameworks */ = {isa = PBXBuildFile; productRef = C6D018A0300E801200002D72 /* BankDesign */; };
+		C6D018A3300E801B00002D72 /* BankCore in Frameworks */ = {isa = PBXBuildFile; productRef = C6D018A2300E801B00002D72 /* BankCore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		C669AD2D30071A8F00288310 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -23,15 +30,42 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C6D0189A300E7F1C00002D72 /* Embed PlugIns */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed PlugIns";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		C669AD1F30071A8D00288310 /* BankSmartAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BankSmartAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C669AD2C30071A8F00288310 /* BankSmartAITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BankSmartAITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C669AD3630071A8F00288310 /* BankSmartAIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BankSmartAIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C6D018AE300E9B4D00002D72 /* Secrets.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Secrets.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		C6D018C7300EA04100002D72 /* Exceptions for "BankSmartAI" folder in "BankSmartAI" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = C669AD1E30071A8D00288310 /* BankSmartAI */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		C669AD2130071A8D00288310 /* BankSmartAI */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				C6D018C7300EA04100002D72 /* Exceptions for "BankSmartAI" folder in "BankSmartAI" target */,
+			);
 			path = BankSmartAI;
 			sourceTree = "<group>";
 		};
@@ -52,6 +86,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6D018A1300E801200002D72 /* BankDesign in Frameworks */,
+				C6D018A3300E801B00002D72 /* BankCore in Frameworks */,
+				C6D0189F300E800700002D72 /* BankNetworking in Frameworks */,
+				C6D01896300E7EE600002D72 /* BankAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,9 +113,11 @@
 		C669AD1630071A8D00288310 = {
 			isa = PBXGroup;
 			children = (
+				C6D018AE300E9B4D00002D72 /* Secrets.xcconfig */,
 				C669AD2130071A8D00288310 /* BankSmartAI */,
 				C669AD2F30071A8F00288310 /* BankSmartAITests */,
 				C669AD3930071A8F00288310 /* BankSmartAIUITests */,
+				C6D01894300E7EE600002D72 /* Frameworks */,
 				C669AD2030071A8D00288310 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -92,6 +132,13 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		C6D01894300E7EE600002D72 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -102,6 +149,7 @@
 				C669AD1B30071A8D00288310 /* Sources */,
 				C669AD1C30071A8D00288310 /* Frameworks */,
 				C669AD1D30071A8D00288310 /* Resources */,
+				C6D0189A300E7F1C00002D72 /* Embed PlugIns */,
 			);
 			buildRules = (
 			);
@@ -112,6 +160,10 @@
 			);
 			name = BankSmartAI;
 			packageProductDependencies = (
+				C6D01895300E7EE600002D72 /* BankAuth */,
+				C6D0189E300E800700002D72 /* BankNetworking */,
+				C6D018A0300E801200002D72 /* BankDesign */,
+				C6D018A2300E801B00002D72 /* BankCore */,
 			);
 			productName = BankSmartAI;
 			productReference = C669AD1F30071A8D00288310 /* BankSmartAI.app */;
@@ -407,7 +459,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5BYCYDNA22;
 				ENABLE_PREVIEWS = YES;
+				GATEWAY_BASE_URL = "http://localhost:4000";
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BankSmartAI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -440,7 +494,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 5BYCYDNA22;
 				ENABLE_PREVIEWS = YES;
+				GATEWAY_BASE_URL = "http://localhost:4000";
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = BankSmartAI/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -615,6 +671,29 @@
 			relativePath = Packages/BankCore;
 		};
 /* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C6D01895300E7EE600002D72 /* BankAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C669AD6230097D7B00288310 /* XCLocalSwiftPackageReference "Packages/BankAuth" */;
+			productName = BankAuth;
+		};
+		C6D0189E300E800700002D72 /* BankNetworking */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C669AD5530097C4800288310 /* XCLocalSwiftPackageReference "Packages/BankNetworking" */;
+			productName = BankNetworking;
+		};
+		C6D018A0300E801200002D72 /* BankDesign */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C669AD6330097D9700288310 /* XCLocalSwiftPackageReference "Packages/BankDesign" */;
+			productName = BankDesign;
+		};
+		C6D018A2300E801B00002D72 /* BankCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C669AD663009803100288310 /* XCLocalSwiftPackageReference "Packages/BankCore" */;
+			productName = BankCore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C669AD1730071A8D00288310 /* Project object */;
 }
