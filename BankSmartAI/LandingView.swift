@@ -13,6 +13,9 @@ import BankCore
 
 struct LandingView: View {
     let viewModel: LandingViewModeling
+    let onSignOut: () async -> Void
+
+    @State private var isSigningOut = false
 
     var body: some View {
         VStack(spacing: 12) {
@@ -28,6 +31,16 @@ struct LandingView: View {
                 Text(email)
                     .foregroundStyle(.secondary)
             }
+
+            Button("Sign Out") {
+                Task {
+                    isSigningOut = true
+                    await onSignOut()
+                    isSigningOut = false
+                }
+            }
+            .disabled(isSigningOut)
+            .padding(.top, 8)
         }
         .padding()
     }

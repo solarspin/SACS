@@ -29,4 +29,12 @@ public protocol AuthSessionRepository: Sendable {
     /// without any network call — `nil` if there is none or it has
     /// expired.
     var currentRole: Role? { get async }
+
+    /// Clears the stored session (Keychain-backed — survives app
+    /// deletion/reinstall by OS design, so this is the only way to end
+    /// a session on-device). After this returns, `currentRole` is
+    /// `nil` and the next `presentGateIfNeeded()` correctly falls back
+    /// to `.signedOut`. Does not touch `LockoutPolicy` — signing out is
+    /// not a failure and must never be recordable as one.
+    func signOut() async
 }

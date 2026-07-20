@@ -1,7 +1,6 @@
 //
 //  ContentView.swift
-//  BankSmartAI
-//
+//  Bank
 //  Created by RogTwo on 7/14/26.
 //
 //  The Sprint 1 root coordinator. Owns the shared repositories' derived
@@ -93,10 +92,19 @@ struct ContentView: View {
     }
 
     private func landingView(for role: Role) -> LandingView {
-        LandingView(viewModel: LiveLandingViewModel(
-            role: role,
-            signedInEmail: signInViewModel.email.isEmpty ? nil : signInViewModel.email
-        ))
+        LandingView(
+            viewModel: LiveLandingViewModel(
+                role: role,
+                signedInEmail: signInViewModel.email.isEmpty ? nil : signInViewModel.email
+            ),
+            onSignOut: { await handleSignOut() }
+        )
+    }
+
+    private func handleSignOut() async {
+        await sessionRepository.signOut()
+        localRoute = nil
+        await runGate()
     }
 
     private func runGate() async {

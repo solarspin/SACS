@@ -44,4 +44,8 @@ public actor LiveAuthSessionRepository: AuthSessionRepository {
             return session.role
         }
     }
+
+    public func signOut() async {
+        await gatewayClient.clearSession()
+    }
 }

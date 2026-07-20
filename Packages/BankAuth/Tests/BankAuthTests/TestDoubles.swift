@@ -142,6 +142,7 @@ actor FakeBiometricEnrollmentPreferenceStoring: BiometricEnrollmentPreferenceSto
 /// touch it from the suite's single `@MainActor` context.
 final class FakeAuthSessionRepository: AuthSessionRepository, @unchecked Sendable {
     var roleValue: Role?
+    private(set) var signOutCallCount = 0
 
     func signIn(email: String, password: Credential) async throws -> Role {
         fatalError("not exercised by these tests")
@@ -153,6 +154,11 @@ final class FakeAuthSessionRepository: AuthSessionRepository, @unchecked Sendabl
 
     var currentRole: Role? {
         get async { roleValue }
+    }
+
+    func signOut() async {
+        signOutCallCount += 1
+        roleValue = nil
     }
 }
 
