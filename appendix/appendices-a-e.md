@@ -29,6 +29,37 @@ here.
 Two more — Appendix F (Failure-Mode Diagnostic Guide) and Appendix G (The Always-Scan List) — are
 in the supplementary reference section. Neither is needed to start.
 
+## What this covers, and what it doesn't
+
+These appendices govern **building something with a fleet of AI agents**. The agents design,
+write, scan, and test; you sign at four seams; the thing they produce ships. That is the shape of
+every phase in Appendix E, and it is why the language talks about contracts, build loops, and
+compile errors.
+
+Some projects build a product that *itself* contains AI agents — ones still running in production
+long after you ship, deciding things while nobody is watching. A support desk that answers
+customers. A trading system. Four agents driving a vehicle around a track. If that is your project,
+two different sets of agents are in play, and only one of them is the fleet:
+
+**The build fleet is what the four seams gate.**
+These are the agents that produce the work. Everything in Appendices D and E is about them — the
+contracts they write, the loop they run, the evidence they assemble. If you write the code yourself
+and use no build fleet at all, the seams still stand exactly where they are; you are simply the one
+arriving at each of them with your own work instead of a machine's.
+
+**Runtime agents are part of the product.**
+They do not get seams of their own. They get designed, bounded, and gated by yours: what a runtime
+agent may decide is a Seam 1 requirement, how that boundary is enforced is a Seam 2 architecture
+decision, and whether the enforcement actually holds is what Seam 4 goes looking for on the real
+system. An agent that will still be running next year is a component with unusual authority — not a
+colleague, and not a seam-holder.
+
+What crosses the line is **Appendix A**. The four questions — may decide, must escalate, may never
+touch, how would anyone find out — apply to any agent on either side. Write them for each member of
+your build fleet, in its role prompt. Then write them again, separately, for every agent that will
+still be running after you ship, because that second set is a description of your product's
+behavior, and it is precisely what your Seam 2 review exists to check.
+
 ## Two ways to start
 
 **By hand**
@@ -571,6 +602,11 @@ signature.** If it removes keystrokes, take it. If it removes a decision, it isn
 *The order of operations, start to finish. Everything below is the book's method stripped to a
 sequence: what you produce, which appendix you use, and what you cannot start until you've signed.
 Chapters 3 through 8 are where the reasoning lives; this is the running order.*
+
+*Every phase below describes the **build fleet** — the agents producing the work. If your product
+will itself contain agents that run in production, they are not a second fleet to gate here; they
+are a component whose authority Phase 1 specifies, Phase 3 fences, and Phase 5 tests. See "What
+this covers" at the front of these appendices.*
 
 ## Before anything — two decisions that aren't in a file yet
 
