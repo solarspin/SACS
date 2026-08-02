@@ -7,6 +7,9 @@ MY PROJECT
   It must never:           [the absolutes]
   A failure would cost:    [the real asset at stake]
   Agents I plan to run:    [how many, and doing what]
+  Who owns what:           [what each agent may do that no other
+                           may; who can override whom, and who
+                           cannot; anything only one of them holds]
   Language / platform:     [yours]
 
 WHAT TO PRODUCE
@@ -20,8 +23,10 @@ WHAT TO PRODUCE
     on every escalation. Mark [DECIDE] wherever a ceiling needs a
     number I have not given you.
  4. seams/seam-1.md through seam-4.md — the four procedures from
-    Appendix D, each carrying its full checklist and an EMPTY
-    sign-off record.
+    Appendix D, each carrying its full checklist, marked v1.0.
+    Seams 1, 2, and 4 each get an EMPTY sign-off record. Seam 3
+    gets an EMPTY run ledger instead — it is not a gate, and
+    Appendix D says so.
  5. One file listing every [DECIDE] you left, so I can work
     through them in one pass.
 
@@ -37,4 +42,4 @@ WHAT YOU MAY NEVER DO
     governance artifacts and directory structure only.
 
 ---
-setup-prompt.txt · 2026-08-01 · extracted from Appendix "How to Use These Appendices"
+setup-prompt.txt · 2026-08-02 · extracted from Appendix "How to Use These Appendices"

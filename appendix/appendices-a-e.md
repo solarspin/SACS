@@ -1,6 +1,6 @@
 # Appendices
 
-*Version 2026-08-01 · pre-press. Tracks the manuscript of "AI Agentic Control Point." Where this file and a printed page disagree, this file is the corrected one.*
+*Version 2026-08-02 · pre-press. Tracks the manuscript of "AI Agentic Control Point." Where this file and a printed page disagree, this file is the corrected one.*
 
 # How to Use These Appendices
 
@@ -69,6 +69,9 @@ MY PROJECT
   It must never:           [the absolutes]
   A failure would cost:    [the real asset at stake]
   Agents I plan to run:    [how many, and doing what]
+  Who owns what:           [what each agent may do that no other
+                           may; who can override whom, and who
+                           cannot; anything only one of them holds]
   Language / platform:     [yours]
 
 WHAT TO PRODUCE
@@ -82,8 +85,10 @@ WHAT TO PRODUCE
     on every escalation. Mark [DECIDE] wherever a ceiling needs a
     number I have not given you.
  4. seams/seam-1.md through seam-4.md — the four procedures from
-    Appendix D, each carrying its full checklist and an EMPTY
-    sign-off record.
+    Appendix D, each carrying its full checklist, marked v1.0.
+    Seams 1, 2, and 4 each get an EMPTY sign-off record. Seam 3
+    gets an EMPTY run ledger instead — it is not a gate, and
+    Appendix D says so.
  5. One file listing every [DECIDE] you left, so I can work
     through them in one pass.
 
@@ -176,8 +181,9 @@ list by content, not by matching header text.
 ## The rules, one line each
 
 **Every grant of authority needs a ceiling.**
-The four flavors: dollar (under $2,500), count (one per 7 days), category (approved templates
-only), time (15–45 days past due).
+The four flavors, whatever the domain: amount (under $2,500; never above 90 km/h), count (one per
+7 days; three retries), category (approved templates only; these three endpoints), time (15–45
+days past due; business hours only).
 
 **Every escalation needs three parts.**
 A trigger, a named recipient an actual person occupies today, and a clock. No clock means a
@@ -345,6 +351,11 @@ Found:     <findings and their dispositions; "none" only when true>
 Signed:    <name>, Seam <N> (<which hat>) — <date>
 ```
 
+A procedure file starts at **v1.0** the day you write it, and its version goes up when the
+checklist changes — never when you sign. That version number is the one figure you may set without
+deciding anything, because it labels a document rather than governing behavior: "never invent a
+number" is about thresholds an agent would then act on, not about naming the edition of a checklist.
+
 ## The four seams at a glance
 
 **Seam 1 — Strategy & Requirements**
@@ -404,8 +415,11 @@ contract.
 ☐ **5. Are all the open questions answered?** Every question flagged as unanswered has a written
 human answer. A question that crosses this gate becomes an agent's guess.
 
-☐ **6. Is every dollar the money type?** Every money value in every signature is an exact decimal,
-never a plain number that can round. One wrong one becomes thousands of generated lines of drift.
+☐ **6. Are the exact values exact types?** Any value that must never drift — money, a count, a
+threshold something gets compared against — carries a type that guarantees exactness, never a
+floating-point number that can round. In a financial system that means money is a decimal type and
+never a plain number; in a physical one it means a measured limit isn't quietly re-rounded on every
+pass. One wrong one becomes thousands of generated lines of drift.
 
 ☐ **7. What happens when it fails?** For any sequence of states: is every state reachable, every
 step allowed, and are the failure states there? A design with no failure states is one nobody
@@ -454,7 +468,12 @@ Then log it — one run-ledger entry per intervention: what looped, the diagnosi
 sprint, whole: three interventions for the same class of confusion is not three fixes, it's one
 missing rule.
 
-## Seam 4 — evidence review, then the device
+This seam has **no sign-off record**, and that is deliberate — the ledger is its artifact. Every
+other seam gates a thing before it moves; this one watches a loop that is supposed to run without
+you. Give it a signature block and you have quietly converted the one seam that isn't a gate into
+a fourth gate you now have to staff.
+
+## Seam 4 — evidence review, then the real thing
 
 The evidence package must prove itself:
 
@@ -470,7 +489,7 @@ you go look.
 ☐ Every UNCONFIRMED/FLAGGED line from every self-report this sprint has a human disposition:
 verified, accepted with reason, or fixed. Flags nobody read are flags the system raised for no one.
 
-The device session — on physical hardware, not a simulator:
+The live session — on the real system, not a simulator:
 
 ☐ Exercise every role. Feel the failure paths — do they degrade the way the policy says, or merely
 somehow work?
@@ -478,16 +497,16 @@ somehow work?
 ☐ Try to do the wrong thing on purpose: exceed a limit, act above your role, replay a stale
 session. Read every refusal the way an attacker would.
 
-☐ Kill the network mid-operation. Kill the app mid-operation. What does the system believe
-afterward — and what does the user see that tells them?
+☐ Interrupt it mid-operation — cut the network, kill the process, pull the power. What does the
+system believe afterward, and what does whoever depends on it see that tells them?
 
 ☐ The unwritable item: would you put your own money, or your own name, through this build today?
 If the answer has a "but," the "but" is a finding.
 
-Findings, then dispositions, then the act: the deploy, executed by you, with credentials that exist
-only in your hands. The device session is not repeating the tests by hand — the suites already
-proved the criteria. You are hunting what automation structurally cannot judge: whether refusals
-read clearly, whether a fallback feels trustworthy or merely functions.
+Findings, then dispositions, then the act: the release, executed by you, with credentials that exist
+only in your hands. The live session is not repeating the tests by hand — the suites already proved
+the criteria. You are hunting what automation structurally cannot judge: whether refusals read
+clearly, whether a fallback feels trustworthy or merely functions.
 
 ## Budgeting the attention
 
@@ -603,10 +622,17 @@ Appendix A: the job, may decide, must escalate, may never touch, audit trail, fa
 Ceilings on every authority. A trigger, a named recipient, and a clock on every escalation. No
 hedge words anywhere in may-never-touch.
 
-Two rules make the roster hold. First, no agent vouches for its own work — the agent that writes
+Three rules make the roster hold. First, no agent vouches for its own work — the agent that writes
 and the agent that checks are different agents with different prompts. Second, every rule in a
 prompt has to be checkable by a stranger; if you can't say how anyone would find out it was broken,
 it isn't a rule yet.
+
+Third, write down what each agent *exclusively* owns, and put it in the prompts on both sides of
+the line. Most real boundaries come from ownership rather than from a list of forbidden verbs: if
+one agent alone may perform some action, then its prompt says it owns that action and every other
+prompt says it may only request one. Ownership also decides what happens when two agents disagree,
+which is the case a roster written as six independent job descriptions will not cover. Name the
+overrides too — who can countermand whom, and who can countermand no one.
 
 Give every prompt an escalation triage it can run without you: *would getting this wrong cost more
 than changing it later?* No — resolve it and record it as a `DEFAULT:` line in the self-report.
@@ -640,8 +666,8 @@ ledger. Review the ledger once a sprint.
 ## Phase 5 — Verify and ship, sign Seam 4
 
 The testing agent — which derives its tests from the contract and has never seen the implementation
-— assembles the evidence package. Run Appendix D's evidence review, then the device session on real
-hardware.
+— assembles the evidence package. Run Appendix D's evidence review, then the live session on the
+real system.
 
 The fleet proves the code works. That is a fact, and facts can be automated. Whether it should be
 trusted is a decision, and the decision is why there's a chair at this seam. Sign by deploying, with
