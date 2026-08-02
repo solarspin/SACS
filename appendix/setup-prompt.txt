@@ -17,6 +17,9 @@ WHAT TO PRODUCE
  2. architecture/MISSION.md — a DRAFT mission brief in Appendix
     C's template, filled from MY PROJECT above. Leave the
     wrong-cost sentence and the walk-away line marked [DECIDE].
+    Also create architecture/PLAN.md as an EMPTY stub carrying
+    only its unsigned Seam 2 record — it is a Phase 3 artifact
+    and you are not the one who writes it.
  3. prompts/roles/<role>.md — one draft role prompt per agent,
     each answering Appendix A's six questions, with a ceiling on
     every authority and a trigger, a named recipient, and a clock
@@ -27,8 +30,10 @@ WHAT TO PRODUCE
     Seams 1, 2, and 4 each get an EMPTY sign-off record. Seam 3
     gets an EMPTY run ledger instead — it is not a gate, and
     Appendix D says so.
- 5. One file listing every [DECIDE] you left, so I can work
-    through them in one pass.
+ 5. DECIDE.md at the repository root — every [DECIDE] you left,
+    in one file, so I can work through them in one pass. Group
+    them by whether getting one wrong would cost more than
+    changing it later.
 
 WHAT YOU MAY NEVER DO
   - Never fill in a signature, a name, or a date. Every sign-off

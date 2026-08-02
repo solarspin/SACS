@@ -79,6 +79,9 @@ WHAT TO PRODUCE
  2. architecture/MISSION.md — a DRAFT mission brief in Appendix
     C's template, filled from MY PROJECT above. Leave the
     wrong-cost sentence and the walk-away line marked [DECIDE].
+    Also create architecture/PLAN.md as an EMPTY stub carrying
+    only its unsigned Seam 2 record — it is a Phase 3 artifact
+    and you are not the one who writes it.
  3. prompts/roles/<role>.md — one draft role prompt per agent,
     each answering Appendix A's six questions, with a ceiling on
     every authority and a trigger, a named recipient, and a clock
@@ -89,8 +92,10 @@ WHAT TO PRODUCE
     Seams 1, 2, and 4 each get an EMPTY sign-off record. Seam 3
     gets an EMPTY run ledger instead — it is not a gate, and
     Appendix D says so.
- 5. One file listing every [DECIDE] you left, so I can work
-    through them in one pass.
+ 5. DECIDE.md at the repository root — every [DECIDE] you left,
+    in one file, so I can work through them in one pass. Group
+    them by whether getting one wrong would cost more than
+    changing it later.
 
 WHAT YOU MAY NEVER DO
   - Never fill in a signature, a name, or a date. Every sign-off
@@ -282,9 +287,10 @@ writes traces back to it.*
 MISSION BRIEF — [project name]
 
 Build and ship [project name], [what it is, one clause]:
-[capability], [capability], and [capability] — written by a
-fleet of AI agents operating under named human control at every
-seam, to production discipline from the first commit. Done means
+[list every capability, however many there are, separated by
+commas with "and" before the last] — written by a fleet of AI
+agents operating under named human control at every seam, to
+production discipline from the first commit. Done means
 every capability clears the bar in its row of the capability map,
 and every line the AI agents wrote passed a human gate that
 produced evidence a reviewer could check. If it is built wrong,
@@ -391,7 +397,10 @@ Signature: the deploy, executed by you, with credentials only you hold.
 "reasonable."
 
 ☐ The compliance checklist is attached, and every row names its enforcer and where the evidence
-lives.
+lives. If no external regime governs this project, that is a finding to record, not a row to skip:
+write down which standard you are holding yourself to instead and attach *that* — a checklist you
+chose is still a checklist, and "nothing applies to us" is a claim that should appear in writing,
+signed, rather than as an empty folder.
 
 Cheapest seam in the pipeline, and the only one that can doom the project by itself: everything
 downstream verifies the product against this brief, including a wrong one.
@@ -602,14 +611,16 @@ reports/
                       assumptions, its defaults, and its flagged items
 security/
   <compliance>-checklist.md         each row: requirement, enforcer,
-                      where the evidence lives
+                      where the evidence lives — an external regime's
+                      if one governs you, your own chosen bar if not
 ```
 
 ## Phase 1 — Write the brief, sign Seam 1
 
-Produce `architecture/MISSION.md` using Appendix C. Attach the compliance checklist. Then run the
-Seam 1 checklist in Appendix D, record what you found, and sign the dated line at the bottom of the
-file. Commit it.
+Produce `architecture/MISSION.md` using Appendix C. Attach the compliance checklist — the external
+regime's if one governs you, and the standard you have chosen to hold yourself to if none does.
+Then run the Seam 1 checklist in Appendix D, record what you found, and sign the dated line at the
+bottom of the file. Commit it.
 
 Nothing else starts until this is signed. Everything downstream verifies the product against this
 brief — a fleet working from an unsigned or vague mission builds the wrong thing with perfect
