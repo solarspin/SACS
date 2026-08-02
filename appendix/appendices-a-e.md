@@ -632,12 +632,22 @@ the one with more moving parts. If your system will itself run agents in product
 seams govern it — read "what the fleet produces" as "what will be running," and see "What this
 covers" and "When the decision is faster than a human" at the front of these appendices.*
 
-## Before anything — two decisions that aren't in a file yet
+## Before anything — the decisions that aren't in a file yet
 
 **Name the seams.**
 Write the four seams down a page and put a real, specific name on each. A role is not a name;
 "someone senior" is nobody. The same name at more than two seams is a finding, not a convenience —
 and if you are solo, that finding is the reason Appendix D's four solo rules exist.
+
+**If a seam crosses an organizational boundary, settle it before the fleet runs.**
+A pipeline that spans departments, contracts, or two vendors' toolchains has the same four seams,
+but the name on each becomes a negotiation rather than a decision you make alone. Three questions
+settle it, and all three are far cheaper to answer now than mid-sprint. Whose name goes on a seam
+the work passes through but no single team owns? Whose signature counts when two toolchains meet in
+the middle and each produces its own records? And who is authorized to refuse on a Friday when the
+release has already been announced? None of these is a technical problem, and no framework answers
+them for you. They are the same negotiation your organization already had about who may approve a
+purchase order, arriving again about something that moves considerably faster.
 
 **Fix the count.**
 Four seams, whatever the size of your fleet. Gates are not keyed to how many agents you run — they
