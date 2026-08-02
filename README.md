@@ -33,8 +33,8 @@ load-bearing, not decorative — the fleet structurally cannot boot past an unsi
 `MISSION.md` or `PLAN.md`; and that "software parts are the business parts" is not a slogan —
 the compliance, risk, and sign-off content of this project live entirely inside engineering
 artifacts (a checklist, a manifest, a commit), never inside an invented boardroom. One rule
-holds at every scale in this repo, from the `.claude/commands/` boot rituals to the
-Control Gates Panel to the seams themselves: **automate the ceremony, never the signature.**
+holds at every scale in this repo, from the `.claude/commands/` boot rituals to the seams
+themselves: **automate the ceremony, never the signature.**
 
 ## What's in it
 
