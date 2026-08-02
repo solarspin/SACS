@@ -1,5 +1,5 @@
 Read the appendix material I am giving you — Appendices A
-through E of "AI Control Point." Then set up a new project.
+through E of "AI Agentic Control Point." Then set up a new project.
 
 MY PROJECT
   What it is:              [one clause]

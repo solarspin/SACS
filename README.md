@@ -2,7 +2,7 @@
 
 An iOS business banking app demo, built by a governed fleet of six AI
 agents with a human at every seam — the working companion project of
-the book *Control Point*.
+the book *AI Agentic Control Point*.
 
 ## Here from the book's appendix? → [`appendix/`](appendix/)
 
@@ -16,7 +16,7 @@ rather it copy a working shape than infer one.
 
 ## What this repo is, and why it exists
 
-This is the book's proof, not its illustration. *Control Point* argues that a fleet of AI
+This is the book's proof, not its illustration. *AI Agentic Control Point* argues that a fleet of AI
 agents can build production-grade software while humans hold real authority at real
 checkpoints. This repo is that argument, actually run. The book cannot claim a real bank
 deployed this method and measured the ROI — so it earns its credibility the only honest way

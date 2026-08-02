@@ -1,6 +1,6 @@
 # Appendices
 
-*Version 2026-08-01 · pre-press. Tracks the manuscript of "AI Control Point." Where this file and a printed page disagree, this file is the corrected one.*
+*Version 2026-08-01 · pre-press. Tracks the manuscript of "AI Agentic Control Point." Where this file and a printed page disagree, this file is the corrected one.*
 
 # How to Use These Appendices
 
@@ -61,7 +61,7 @@ as written.
 
 ```
 Read the appendix material I am giving you — Appendices A
-through E of "AI Control Point." Then set up a new project.
+through E of "AI Agentic Control Point." Then set up a new project.
 
 MY PROJECT
   What it is:              [one clause]
@@ -135,8 +135,8 @@ it if you would rather it copy a working shape than infer one.*
 **4. How would anyone find out?**
 
 They are questions about authority, not technology. If you can answer all four, in writing, in a
-form a stranger could check — you have a control point. That is the book's title, not a
-coincidence: this is the actual point where control either exists or doesn't. If you can't
+form a stranger could check — you have a control point. That phrase sits in this book's title, not
+by coincidence: this is the actual point where control either exists or doesn't. If you can't
 answer all four, you have a hope.
 
 ## The six questions every role prompt has to answer
