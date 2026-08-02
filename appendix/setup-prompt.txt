@@ -1,0 +1,40 @@
+Read the appendix material I am giving you — Appendices A
+through E of "AI Control Point." Then set up a new project.
+
+MY PROJECT
+  What it is:              [one clause]
+  Capabilities:            [name them; nouns, not adjectives]
+  It must never:           [the absolutes]
+  A failure would cost:    [the real asset at stake]
+  Agents I plan to run:    [how many, and doing what]
+  Language / platform:     [yours]
+
+WHAT TO PRODUCE
+ 1. The repository layout from Appendix E, created for real.
+ 2. architecture/MISSION.md — a DRAFT mission brief in Appendix
+    C's template, filled from MY PROJECT above. Leave the
+    wrong-cost sentence and the walk-away line marked [DECIDE].
+ 3. prompts/roles/<role>.md — one draft role prompt per agent,
+    each answering Appendix A's six questions, with a ceiling on
+    every authority and a trigger, a named recipient, and a clock
+    on every escalation. Mark [DECIDE] wherever a ceiling needs a
+    number I have not given you.
+ 4. seams/seam-1.md through seam-4.md — the four procedures from
+    Appendix D, each carrying its full checklist and an EMPTY
+    sign-off record.
+ 5. One file listing every [DECIDE] you left, so I can work
+    through them in one pass.
+
+WHAT YOU MAY NEVER DO
+  - Never fill in a signature, a name, or a date. Every sign-off
+    record ships empty.
+  - Never invent a number I did not give you. A missing threshold
+    is a [DECIDE], not a sensible default.
+  - Never mark a checklist item as done, checked, or passed.
+  - Never drop or soften an item from the appendix checklists to
+    fit my project. If one does not apply, leave it in and flag it.
+  - Never write implementation code. This assignment produces
+    governance artifacts and directory structure only.
+
+---
+setup-prompt.txt · 2026-08-01 · extracted from Appendix "How to Use These Appendices"
