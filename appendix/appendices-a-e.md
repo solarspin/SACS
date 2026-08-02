@@ -29,36 +29,60 @@ here.
 Two more — Appendix F (Failure-Mode Diagnostic Guide) and Appendix G (The Always-Scan List) — are
 in the supplementary reference section. Neither is needed to start.
 
-## What this covers, and what it doesn't
+## What this covers
 
-These appendices govern **building something with a fleet of AI agents**. The agents design,
-write, scan, and test; you sign at four seams; the thing they produce ships. That is the shape of
-every phase in Appendix E, and it is why the language talks about contracts, build loops, and
-compile errors.
+The Control Point system governs **both** — a fleet of agents building something, and a system of
+agents running in production once it's built. The same four seams, the same four questions, the
+same signature standard.
 
-Some projects build a product that *itself* contains AI agents — ones still running in production
-long after you ship, deciding things while nobody is watching. A support desk that answers
-customers. A trading system. Four agents driving a vehicle around a track. If that is your project,
-two different sets of agents are in play, and only one of them is the fleet:
+That works because the seams are not stages of a build. They are the four points where authority
+changes hands, and those points exist in a running system exactly as they do in a build:
 
-**The build fleet is what the four seams gate.**
-These are the agents that produce the work. Everything in Appendices D and E is about them — the
-contracts they write, the loop they run, the evidence they assemble. If you write the code yourself
-and use no build fleet at all, the seams still stand exactly where they are; you are simply the one
-arriving at each of them with your own work instead of a machine's.
+**Seam 1 — Strategy & Requirements.**
+Building: what are we making, and what must it never do. Running: what may the live system decide
+on its own, and what must it never do. The same question, asked of a different subject.
 
-**Runtime agents are part of the product.**
-They do not get seams of their own. They get designed, bounded, and gated by yours: what a runtime
-agent may decide is a Seam 1 requirement, how that boundary is enforced is a Seam 2 architecture
-decision, and whether the enforcement actually holds is what Seam 4 goes looking for on the real
-system. An agent that will still be running next year is a component with unusual authority — not a
-colleague, and not a seam-holder.
+**Seam 2 — Architecture & Security.**
+Building: the contracts, and the fences between components. Running: the fences between agents —
+which one owns which action, who can override whom, and what no amount of agreement between them
+can authorize.
 
-What crosses the line is **Appendix A**. The four questions — may decide, must escalate, may never
-touch, how would anyone find out — apply to any agent on either side. Write them for each member of
-your build fleet, in its role prompt. Then write them again, separately, for every agent that will
-still be running after you ship, because that second set is a description of your product's
-behavior, and it is precisely what your Seam 2 review exists to check.
+**Seam 3 — Engineering Overwatch.**
+Building: watch the build loop, step in when it circles. Running: watch the live system, step in
+when it does. This seam was always about a loop that is supposed to run without you; a production
+system is that loop with the stakes turned up. The run ledger becomes the intervention log.
+
+**Seam 4 — Final Sign-off.**
+Building: cleared to ship. Running: cleared to operate — this configuration, this environment,
+today — and signed again when any of that changes.
+
+Appendix A's four questions apply on both sides too, and get written twice: once for each member of
+a build fleet, in its role prompt, and again for every agent that will still be running after you
+ship. That second set is a description of your product's behavior, and writing it is Seam 1 and
+Seam 2 work, not a separate discipline.
+
+## When the decision is faster than a human
+
+Some running systems act on a clock no human can be inside. A vehicle that loses the track boundary
+has a few hundred milliseconds; nobody is going to be paged and answer in time. It is tempting to
+read that as a hole in the method — a gate nobody can stand at.
+
+It isn't, because a control point never meant a human present at the moment of action. It meant a
+human having decided, in writing, before that action was possible. When there is time to ask, the
+decision takes the shape of an escalation: a trigger, a named recipient, and a clock. When there
+isn't, the decision takes the shape of a **default action, chosen and signed in advance** — stop
+the car, refuse the trade, hold the position, fail closed. Both are human decisions. What changes
+is *when you are asked*, never *whether*.
+
+So the fast path is governed like any other: name the condition, name the action it triggers, and
+sign it at Seam 1. Then Seam 2 checks that the action can actually fire — that the component
+holding it needs nothing from the components that may have just failed. Then Seam 4 makes it
+happen on the real system and watches it, because a default nobody has ever triggered on purpose is
+a claim, not a control.
+
+A signed default is a control point. An unsigned one is a developer's guess wearing a control's
+clothes — and the difference between them is not in the code, which looks identical either way. It
+is in whether a human decided it, wrote it down, and put their name on it.
 
 ## Two ways to start
 
@@ -603,10 +627,10 @@ signature.** If it removes keystrokes, take it. If it removes a decision, it isn
 sequence: what you produce, which appendix you use, and what you cannot start until you've signed.
 Chapters 3 through 8 are where the reasoning lives; this is the running order.*
 
-*Every phase below describes the **build fleet** — the agents producing the work. If your product
-will itself contain agents that run in production, they are not a second fleet to gate here; they
-are a component whose authority Phase 1 specifies, Phase 3 fences, and Phase 5 tests. See "What
-this covers" at the front of these appendices.*
+*The phases below are written for a fleet building something, because that is the longer path and
+the one with more moving parts. If your system will itself run agents in production, the same four
+seams govern it — read "what the fleet produces" as "what will be running," and see "What this
+covers" and "When the decision is faster than a human" at the front of these appendices.*
 
 ## Before anything — two decisions that aren't in a file yet
 
