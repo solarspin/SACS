@@ -4,6 +4,16 @@ An iOS business banking app demo, built by a governed fleet of six AI
 agents with a human at every seam — the working companion project of
 the book *Control Point*.
 
+## Here from the book's appendix? → [`appendix/`](appendix/)
+
+The appendices in copyable form, including the setup prompt for standing up a governed project of
+your own. Start with [`appendix/setup-prompt.txt`](appendix/setup-prompt.txt) and hand your agent
+[`appendix/appendices-a-e.md`](appendix/appendices-a-e.md) alongside it.
+
+Everything else in this repo is the worked example those templates were pulled from — a real
+mission brief, real role prompts, real signed seam records. Point your agent here if you would
+rather it copy a working shape than infer one.
+
 ## What this repo is, and why it exists
 
 This is the book's proof, not its illustration. *Control Point* argues that a fleet of AI
@@ -36,5 +46,6 @@ Control Gates Panel to the seams themselves: **automate the ceremony, never the 
 - `security/masvs-checklist.md` — the security spine
 - `Gateway/` — the local mock banking core (`npm start`)
 - `Packages/` — feature-per-package; the manifests are the fences
+- `appendix/` — the book's appendices, in copyable form
 
 Demo only: mock gateway, fake credentials, no real money, ever.
