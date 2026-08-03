@@ -1,6 +1,6 @@
 # Appendices
 
-*Version 2026-08-03 · pre-press. Tracks the manuscript of "AI Agentic Control Point." Where this file and a printed page disagree, this file is the corrected one.*
+*Version 2026-08-03 · pre-press. Tracks the manuscript of "Agentic AI Control Point." Where this file and a printed page disagree, this file is the corrected one.*
 
 # How to Use These Appendices
 
@@ -116,7 +116,7 @@ as written.
 
 ```
 Read the appendix material I am giving you — Appendices A
-through E of "AI Agentic Control Point." Then set up a new project.
+through E of "Agentic AI Control Point." Then set up a new project.
 
 MY PROJECT
   What it is:              [one clause]
