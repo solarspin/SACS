@@ -1,6 +1,6 @@
 # Appendices
 
-*Version 2026-08-02 · pre-press. Tracks the manuscript of "AI Agentic Control Point." Where this file and a printed page disagree, this file is the corrected one.*
+*Version 2026-08-03 · pre-press. Tracks the manuscript of "AI Agentic Control Point." Where this file and a printed page disagree, this file is the corrected one.*
 
 # How to Use These Appendices
 
@@ -215,7 +215,7 @@ THE AI AGENT'S JOB
 One or two sentences: what it does, on what schedule, feeding what.
 
 MAY DECIDE
-The authority, with its ceilings — dollar, count, category, time.
+The authority, with its ceilings — amount, count, category, time.
 
 MUST ESCALATE
 Triggers, a named recipient (role + roster is fine), and a clock.
@@ -437,7 +437,7 @@ a gate, and the discipline is refusing to make it one.
 
 **Seam 4 — Final Sign-off**
 Arrives: the evidence package.
-Check: the evidence review, then a physical device in your hands.
+Check: the evidence review, then the live session on the real system.
 Signature: the deploy, executed by you, with credentials only you hold.
 
 ## Seam 1 checklist

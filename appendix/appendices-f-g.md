@@ -1,6 +1,6 @@
 # Appendices — Supplementary Reference
 
-*Version 2026-08-02 · pre-press. Tracks the manuscript of "AI Agentic Control Point." Where this file and a printed page disagree, this file is the corrected one.*
+*Version 2026-08-03 · pre-press. Tracks the manuscript of "AI Agentic Control Point." Where this file and a printed page disagree, this file is the corrected one.*
 
 *Appendices A through E are the kit: everything needed to run the Control Point system on a new
 project, in the order you need it. These last two are not part of that kit. You do not need either
@@ -129,6 +129,6 @@ past that is yours to check.
 ## Where the live version lives
 
 The list above is a snapshot. The actual, currently-maintained file — `prompts/roles/secops.md` —
-lives in the companion repository at `github.com/solarspin/SACS`, the same repo Chapter 3's
-Follow Along box points you to. Add rules there as your own build earns them; don't let this
+lives in the companion repository at `github.com/solarspin/SACS`, the same repo Chapter 5's
+Follow Along box has you clone. Add rules there as your own build earns them; don't let this
 printed page fall out of sync with the one your SecOps Agent actually runs against.

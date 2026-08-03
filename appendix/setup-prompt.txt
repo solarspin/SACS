@@ -47,4 +47,4 @@ WHAT YOU MAY NEVER DO
     governance artifacts and directory structure only.
 
 ---
-setup-prompt.txt · 2026-08-02 · extracted from Appendix "How to Use These Appendices"
+setup-prompt.txt · 2026-08-03 · extracted from Appendix "How to Use These Appendices"

@@ -1,6 +1,6 @@
 # The Appendices — *AI Agentic Control Point*
 
-*Version 2026-08-02 · pre-press. Tracks the manuscript of "AI Agentic Control Point." Where this file and a printed page disagree, this file is the corrected one.*
+*Version 2026-08-03 · pre-press. Tracks the manuscript of "AI Agentic Control Point." Where this file and a printed page disagree, this file is the corrected one.*
 
 Everything in the book's appendices, in copyable form. You are here because the printed page told
 you to be: selecting forty lines of text out of an e-reader is a fight, and out of a paper book it
